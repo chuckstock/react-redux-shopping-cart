@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import fetchTeas from '../actions';
+import { fetchTeas } from '../actions/index';
 import axios from 'axios';
 
 class TeaList extends Component {
     componentWillMount() {
-        axios.get('src/files/teas.json')
-            .then((res) => console.log(res))
+        this.props.fetchTeas();
     }
 
     render() {
@@ -38,7 +37,6 @@ class TeaList extends Component {
 }
 
 function mapStateToProps(state) {
-    console.log(state);
     return { teas: state.teas.all }
 }
 
