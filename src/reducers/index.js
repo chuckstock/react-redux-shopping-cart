@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux';
+import TeasReducer from './reducer-tea';
 
 const rootReducer = combineReducers({
-  state: (state = {}) => state
+  teas: TeasReducer
 });
 
 export default rootReducer;
