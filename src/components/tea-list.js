@@ -9,6 +9,7 @@ class TeaList extends Component {
     }
 
     render() {
+        console.log(this.props.teas);
         return (
             <div>
                 <h1>Welcome to Tea Shopping Cart</h1>
@@ -30,13 +31,14 @@ class TeaList extends Component {
     renderList() {
         return (
             <tr>
-                <td>I'm a list item</td>
+                <td>hi</td>
             </tr>
         );
     }
 }
 
 function mapStateToProps(state) {
+    console.log(state);
     return { teas: state.teas.all }
 }
 

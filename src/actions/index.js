@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const FETCH_TEAS = 'FETCH_TEAS';
+export const FETCH_TEAS = 'FETCH_TEAS';
 
 export function fetchTeas() {
     const request = axios.get('src/files/teas.json');
