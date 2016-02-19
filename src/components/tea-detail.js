@@ -48,8 +48,12 @@ class TeaDetail extends Component {
     }
 
     onAddClick() {
-        this.props.onAddClick(this.props.tea, this.state.quantitySelected);
-        this.setState({ quantitySelected: 0 });
+        if (this.state.quantitySelected) {
+            this.props.onAddClick(this.props.tea, this.state.quantitySelected);
+            this.setState({ quantitySelected: 0 });
+        } else {
+            this.props.invalidQuantity();
+        }
     }
 
 

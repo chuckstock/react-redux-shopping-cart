@@ -10,10 +10,12 @@ class TeaList extends Component {
 
         this.state = {
             checkoutBag: [],
-            success: false
+            success: false,
+            failure: false
         };
 
         this.updateCheckoutBag = this.updateCheckoutBag.bind(this);
+        this.invalidQuantity = this.invalidQuantity.bind(this);
     }
 
     componentWillMount() {
@@ -27,9 +29,22 @@ class TeaList extends Component {
 
         return this.props.teas.map((tea) => {
             return (
-                <TeaDetail onAddClick={this.updateCheckoutBag} key={tea._id} tea={tea} />
+                <TeaDetail
+                    onAddClick={this.updateCheckoutBag}
+                    invalidQuantity={this.invalidQuantity}
+                    key={tea._id}
+                    tea={tea}
+                />
             );
         });
+    }
+
+    invalidQuantity() {
+        this.setState({ failure: true });
+
+        setTimeout(() => {
+            this.setState({ failure: false });
+        }, 3000)
     }
 
     updateCheckoutBag(tea, quantity) {
@@ -43,7 +58,7 @@ class TeaList extends Component {
         }, 3000);
     }
 
-    renderAlertMessage() {
+    renderSuccessMessage() {
         return (
             <div className="alert alert-success">
                 Success! Your item has been added to your cart!
@@ -51,14 +66,21 @@ class TeaList extends Component {
         );
     }
 
+    renderFailureMessage() {
+        return (
+            <div className="alert alert-danger">
+                Error!  Please pick a quanitty larger than 0.
+            </div>
+        );
+    }
+
     render() {
-        console.log(this.props.teas);
-        console.log(this.state);
         return (
             <div>
                 <h1>Welcome to Tea Shopping Cart</h1>
 
-                {this.state.success ? this.renderAlertMessage() : null}
+                {this.state.success ? this.renderSuccessMessage() : null}
+                {this.state.failure ? this.renderFailureMessage() : null}
 
                 <table className="table table-bordered">
                     <thead>
