@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { fetchTeas } from '../actions/index';
 
 import TeaDetail from './tea-detail';
+import Filter from './filter';
 
 class TeaList extends Component {
     constructor(props) {
@@ -75,13 +76,16 @@ class TeaList extends Component {
     }
 
     render() {
+        console.log(this.props.teas);
         return (
             <div>
-                <h1>Welcome to Tea Shopping Cart</h1>
+
+                <h1>Welcome to Tea Shopping sCart</h1>
 
                 {this.state.success ? this.renderSuccessMessage() : null}
                 {this.state.failure ? this.renderFailureMessage() : null}
 
+                <Filter />
                 <table className="table table-bordered">
                     <thead>
                         <tr>
